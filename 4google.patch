@@ -1,0 +1,40 @@
+Index: up/go.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/up/go.js b/up/go.js
+--- a/up/go.js	
++++ b/up/go.js	(date 1680781075598)
+@@ -35,11 +35,11 @@
+ 
+ if (!$global.fs) {
+   var outputBuf = "";
+-  var decoder = new TextDecoder("utf-8");
++  
+   $global.fs = {
+     constants: { O_WRONLY: -1, O_RDWR: -1, O_CREAT: -1, O_TRUNC: -1, O_APPEND: -1, O_EXCL: -1 }, // unused
+     writeSync: function writeSync(fd, buf) {
+-      outputBuf += decoder.decode(buf);
++      outputBuf += buf;
+       var nl = outputBuf.lastIndexOf("\n");
+       if (nl != -1) {
+         console.log(outputBuf.substr(0, nl));
+@@ -1732,7 +1732,7 @@
+   // the effect of this penalty by queueing the timer preemptively before we run
+   // the goroutines, and later cancelling it if it turns out unneeded. See:
+   // https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#nested_timeouts
+-  var nextRun = setTimeout($runScheduled);
++
+   try {
+     var start = Date.now();
+     var r;
+@@ -1749,7 +1749,7 @@
+   } finally {
+     if ($scheduled.length == 0) {
+       // Cancel scheduling pass if there's nothing to run.
+-      clearTimeout(nextRun);
++
+     }
+   }
+ };
